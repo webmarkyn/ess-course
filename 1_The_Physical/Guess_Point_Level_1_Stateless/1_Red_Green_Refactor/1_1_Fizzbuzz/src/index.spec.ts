@@ -14,4 +14,9 @@ describe("fizzbuzz", () => {
     const input = [5,10];
     expect(fizzbuzz(input)).toBe('buzz'.repeat(input.length))
   })
+
+  it('returns a "fizzbuzz" for multiples of both 3 and 5', () => {
+    const input = [15,30,45];
+    expect(fizzbuzz(input)).toBe('fizzbuzz'.repeat(input.length))
+  })
 });
