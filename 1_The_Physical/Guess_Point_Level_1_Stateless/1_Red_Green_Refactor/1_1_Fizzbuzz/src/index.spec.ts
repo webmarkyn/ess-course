@@ -19,4 +19,9 @@ describe("fizzbuzz", () => {
     const input = [15,30,45];
     expect(fizzbuzz(input)).toBe('fizzbuzz'.repeat(input.length))
   })
+
+  it('returns a number for numbers that are not multiples of 3 or 5', () => {
+    const input = [1,2,4,8];
+    expect(fizzbuzz(input)).toBe(input.join(''))
+  })
 });
