@@ -19,4 +19,10 @@ describe('palindrome checker', () => {
             expect(isPalindrome(str)).toBeTruthy()
         })
     })
+    describe('Should ignore spaces', () => {
+        const palindromeSentences = ['mr owl ate my metal worm', 'do geese see god', 'was it a car or a cat i saw'];
+        it.each(palindromeSentences)('knows that "%s" is a palindrome', (str) => {
+            expect(isPalindrome(str)).toBeTruthy()
+        })
+    })
 })
