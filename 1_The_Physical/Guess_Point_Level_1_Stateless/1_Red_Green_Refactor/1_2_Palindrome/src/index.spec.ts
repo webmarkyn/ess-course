@@ -15,7 +15,7 @@ describe('palindrome checker', () => {
     })
     describe('Should ignore the casing of characters', () => {
         const palindromes = ['Mom', 'RaceCar', 'lEVel', 'bOB']
-        it.each(palindromes)('knows sthat "%s" is a palindrome', (str) => {
+        it.each(palindromes)('knows that "%s" is a palindrome', (str) => {
             expect(isPalindrome(str)).toBeTruthy()
         })
     })
