@@ -1,10 +1,16 @@
 import isPalindrome from './index';
 
 describe('palindrome checker', () => {
-    it('Should know that "mom" is a palindrome', () => {
-        expect(isPalindrome('mom')).toBeTruthy();
-    });
-    it('Should know that "mark" is not a palindrome', () => {
-        expect(isPalindrome('mark')).toBeFalsy();
+    describe('Should tell that the word is a palindrome', () => {
+        const palindromes = ['mom', 'racecar', 'bob', 'level'];
+        it.each(palindromes)('knows that "%s" is a palindrome', (str) => {
+            expect(isPalindrome(str)).toBeTruthy();
+        });
+    })
+    describe('Should tell that the word is a palindrome', () => {
+        const nonPalindromes = ['mark', 'house', 'book', 'dog'];
+        it.each(nonPalindromes)('knows that "%s" isn\'t a palindrome', (str) => {
+            expect(isPalindrome(str)).toBeFalsy();
+        });
     })
 })
