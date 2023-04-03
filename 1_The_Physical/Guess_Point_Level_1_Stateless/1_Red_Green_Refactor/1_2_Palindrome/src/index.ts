@@ -1,5 +1,6 @@
 function isPalindrome(str: string): boolean {
-    return str === str.split('').reverse().join('');
+    const lowerCaseStr = str.toLowerCase();
+    return lowerCaseStr === lowerCaseStr.split('').reverse().join('');
 }
 
 export default isPalindrome;
