@@ -8,6 +8,9 @@ describe('password validator', () => {
         it('returns an object with "isValid" property of boolean type', () => {
             expect(typeof validatePassword('test')?.isValid).toEqual('boolean');
         })
+        it('returns an object with "errors" property of array type', () => {
+            expect(Array.isArray(validatePassword('test')?.errors)).toBeTruthy();
+        })
     })
 })
 
