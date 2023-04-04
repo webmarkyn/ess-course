@@ -1,5 +1,7 @@
 const validatePassword = (password: string) => {
-    return {};
+    return {
+        isValid: true,
+    };
 }
 
 export default validatePassword;

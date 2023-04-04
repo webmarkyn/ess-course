@@ -5,6 +5,9 @@ describe('password validator', () => {
         it('returns an object', () => {
             expect(typeof validatePassword('test')).toEqual('object');
         })
+        it('returns an object with "isValid" property of boolean type', () => {
+            expect(typeof validatePassword('test')?.isValid).toEqual('boolean');
+        })
     })
 })
 
