@@ -1,5 +1,9 @@
 import validatePassword from './index';
 
+const hasError = (result: { isValid: boolean, errors: string[] }, error: string) => {
+    return result.errors.includes(error) && !result.isValid;
+}
+
 describe('password validator', () => {
     describe('output', () => {
         it('returns an object', () => {
@@ -14,12 +18,9 @@ describe('password validator', () => {
     })
     describe('logic', () => {
         describe('length validation', () => {
-            const LENGTH_VALIDATION_ERROR = {
-                isValid: false,
-                errors: ['PWD_LENGTH'],
-            }
             it.each(['Abc2', 'A1bcdsdlfsdkfklsdlfsd'])('know thas password "%s" is invalid', (val) => {
-                expect(validatePassword(val)).toEqual(LENGTH_VALIDATION_ERROR);
+                const output = validatePassword(val);
+                expect(hasError(output, 'PWD_LENGTH')).toBeTruthy();
             })
         })
     })
