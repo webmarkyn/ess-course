@@ -4,7 +4,10 @@ const hasError = (result: { isValid: boolean, errors: string[] }, error: string)
     return result.errors.includes(error) && !result.isValid;
 }
 
+const isValid = (result: {isValid: boolean, errors: string[] }) => result.isValid && result.errors.length === 0;
+
 describe('password validator', () => {
+    const validPwd = 'bc2Eg';
     describe('output', () => {
         it('returns an object', () => {
             expect(typeof validatePassword('test')).toEqual('object');
@@ -24,11 +27,16 @@ describe('password validator', () => {
             })
         })
         describe('uppercase validation', () => {
-            const INVALID_PWD = 'abcdf';
-            it(`knows that password "${INVALID_PWD}" is invalid`, () => {
-                const output = validatePassword(INVALID_PWD);
+            const invalidPwd = 'abcdf';
+            it(`knows that password "${invalidPwd}" is invalid`, () => {
+                const output = validatePassword(invalidPwd);
                 expect(hasError(output, 'NO_UPPERCASE')).toBeTruthy();
             })
+        })
+
+        it(`knows that password "${validPwd}" is valid`, () => {
+            const output = validatePassword(validPwd);
+            expect(isValid(output)).toBeTruthy();
         })
     })
 })
