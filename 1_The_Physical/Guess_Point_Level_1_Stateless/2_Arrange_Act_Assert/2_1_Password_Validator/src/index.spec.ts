@@ -23,6 +23,13 @@ describe('password validator', () => {
                 expect(hasError(output, 'PWD_LENGTH')).toBeTruthy();
             })
         })
+        describe('uppercase validation', () => {
+            const INVALID_PWD = 'abcdf';
+            it(`knows that password "${INVALID_PWD}" is invalid`, () => {
+                const output = validatePassword(INVALID_PWD);
+                expect(hasError(output, 'NO_UPPERCASE')).toBeTruthy();
+            })
+        })
     })
 })
 
