@@ -33,6 +33,13 @@ describe('password validator', () => {
                 expect(hasError(output, 'NO_UPPERCASE')).toBeTruthy();
             })
         })
+        describe('digit validation', () => {
+            const invalidPwd = 'avDc';
+            it(`knows that password "${invalidPwd}" is invalid`, () => {
+                const output = validatePassword(invalidPwd);
+                expect(hasError(output, 'NO_DIGIT')).toBeTruthy();
+            })
+        })
 
         it(`knows that password "${validPwd}" is valid`, () => {
             const output = validatePassword(validPwd);
