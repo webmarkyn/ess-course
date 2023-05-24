@@ -8,6 +8,21 @@
 - "25:00 - 12:23" (no)
 - "22:00 - 23:12" (yes)
 
+knowings:
+    knows that input string is in valid time-range format
+        "03:20-23:20" is invalid
+        "3:04 - 5:3" is invalid
+        "1:14 - 22:14" is valid
+    knows whether time is valid
+        valid when:
+            1.hours is >= 0 or < 24
+            2. minutes >= 0 or < 60
+    "01:15 - 22:14" is valid
+    "13:20 - 18:59" is valid
+    "20:40 - 05:30" is valid
+    "25:40 - 05:30" is invalid
+    "03:61 - 24:30" is invalid
+
 ## Getting started
 
 To set up the project, run the following command:
