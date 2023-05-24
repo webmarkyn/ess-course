@@ -5,4 +5,9 @@ describe('boolean calculator', () => {
         const output = BooleanCalculator.calculate('TRUE')
         expect(typeof output).toBe('boolean');
     })
+
+    it('returns false for "FALSE" expression', () => {
+        const output = BooleanCalculator.calculate('FALSE');
+        expect(output).toBe(false);
+    })
 })

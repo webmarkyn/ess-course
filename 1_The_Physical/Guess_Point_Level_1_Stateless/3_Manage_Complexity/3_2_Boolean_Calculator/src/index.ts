@@ -1,5 +1,5 @@
 export class BooleanCalculator {
     public static calculate(expression: string) {
-        return true;
+        return expression === 'TRUE' ? true : false;
     }
 }
