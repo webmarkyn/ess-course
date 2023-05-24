@@ -1,3 +1,3 @@
 export const validateMilitaryTime = (input: string): boolean => {
-    return true;
+    return input.length === 13;
 };
