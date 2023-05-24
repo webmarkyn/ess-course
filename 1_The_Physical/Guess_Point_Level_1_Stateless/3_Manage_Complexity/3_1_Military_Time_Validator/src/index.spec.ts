@@ -20,6 +20,7 @@ describe('military time validator', () => {
             ['24:39 - 20:42', 'invalid', false],
             ['22:29 - 00:61', 'invalid', false],
             ['-2:29 - 00:-1', 'invalid', false],
+            ['01:12 - 14:32', 'valid', true],
         ])('knows that input "%s" is %s military time', (input, _, expected) => {
             const output = validateMilitaryTime(input);
             expect(output).toBe(expected);
