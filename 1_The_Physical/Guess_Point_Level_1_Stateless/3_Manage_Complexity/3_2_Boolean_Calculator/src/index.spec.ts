@@ -6,19 +6,24 @@ describe('boolean calculator', () => {
         expect(typeof output).toBe('boolean');
     })
 
-    it('returns false for "FALSE" expression', () => {
-        const output = BooleanCalculator.calculate('FALSE');
-        expect(output).toBe(false);
+    describe('Can calculate one-word expression', () => {
+        it.each([
+            ['TRUE', true],
+            ['FALSE', false],
+        ])('returns %s for %s expression', (expression, expected) => {
+            const output = BooleanCalculator.calculate(expression);
+            expect(output).toBe(expected);
+        })
     })
 
-    it('returns true for "NOT FALSE" expression', () => {
-        const output = BooleanCalculator.calculate('NOT FALSE')
-        expect(output).toBe(true);
-    })
 
-
-    it('returns false for "NOT TRUE" expression', () => {
-        const output = BooleanCalculator.calculate('NOT TRUE')
-        expect(output).toBe(false);
+    describe('Can calculate expressions with operations', () => {
+        it.each([
+            ['NOT TRUE', false],
+            ['NOT FALSE', true],
+        ])('returns %s for %s expression', (expression, expected) => {
+            const output = BooleanCalculator.calculate(expression);
+            expect(output).toBe(expected);
+        })
     })
 })
