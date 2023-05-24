@@ -12,4 +12,9 @@ describe('military time validator', () => {
         const output = validateMilitaryTime(input);
         expect(output).toBe(expected);
     })
+
+    it('knows that input "24:39 - 20:42" is invalid military time', () => {
+        const output = validateMilitaryTime('24:39 - 20:42');
+        expect(output).toBeFalsy();
+    })
 })
