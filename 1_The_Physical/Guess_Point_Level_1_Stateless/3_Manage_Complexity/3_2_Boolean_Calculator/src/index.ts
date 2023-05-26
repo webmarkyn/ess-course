@@ -1,17 +1,79 @@
+interface OperationUsage {
+    index: number;
+}
+interface PriorityList {
+    'NOT': OperationUsage[];
+    'AND': OperationUsage[];
+}
+
+interface PriorityTreeNode {
+    operation: string;
+    left: PriorityTreeNode;
+    right: PriorityTreeNode;
+}
+
+interface PriorityTree {
+    root: PriorityTreeNode;
+}
+
+type Operation = 'NOT' | 'AND';
+
 export class BooleanCalculator {
-    private static hasToBeInverted(expression: string, invertorsCount=0): boolean {
-        if (expression.indexOf('NOT') === 0) {
-            return BooleanCalculator.hasToBeInverted(expression.slice(4), invertorsCount + 1);
-        } else {
-            return invertorsCount % 2 === 1;
+    private static operationsByPriorityAsc: Operation[] = ['AND', 'NOT'];
+
+    private static groupByOperations(expression: string[]) {
+        const priorityList: Record<Operation, OperationUsage[]> = {
+            'AND': [],
+            'NOT': [],
+        };
+        return expression.reduce((acc, word, index) => {
+            if (acc[word as Operation]) {
+                acc[word as Operation].push({ index });
+            }
+            return acc;
+        }, priorityList);
+    }
+
+    private static findLowestPriorityOperationIndex(expression: string[]): number {
+        const operationsByPriority = BooleanCalculator.groupByOperations(expression);
+        for (const operationName of BooleanCalculator.operationsByPriorityAsc) {
+            if (operationsByPriority[operationName as Operation].length > 0) {
+                const lastFoundOperation = operationsByPriority[operationName as keyof PriorityList].slice(-1)[0];
+                return lastFoundOperation.index;
+            }
+        }
+        throw new Error('Invalid expression');
+    }
+
+
+    private static evaluate(expression: string[]): boolean {
+        if (expression.length === 1) {
+            if (expression[0] === 'TRUE') {
+                return true;
+            }
+            if (expression[0] === 'FALSE') {
+                return false;
+            }
+            throw new Error('Invalid expression');
+        }
+
+        const operationIndex = this.findLowestPriorityOperationIndex(expression);
+        const operation = expression[operationIndex];
+        const left = expression.slice(0, operationIndex);
+        const right = expression.slice(operationIndex + 1);
+
+        switch (operation) {
+            case 'NOT':
+                const output = !BooleanCalculator.evaluate(right);
+                return BooleanCalculator.evaluate([...left, output ? 'TRUE' : 'FALSE']);
+            case 'AND':
+                return BooleanCalculator.evaluate(left) && BooleanCalculator.evaluate(right);
+            default:
+                throw new Error('Invalid operation');
         }
     }
 
     public static calculate(expression: string) {
-        const hasToBeInverted = BooleanCalculator.hasToBeInverted(expression);
-        if (expression.indexOf('TRUE') >= 0) {
-            return hasToBeInverted ? false : true;
-        }
-        return  hasToBeInverted ? true : false;
+        return this.evaluate(expression.split(' '));
     }
 }

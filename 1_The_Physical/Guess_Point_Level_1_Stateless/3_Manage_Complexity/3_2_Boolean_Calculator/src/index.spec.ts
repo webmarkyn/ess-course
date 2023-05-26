@@ -23,6 +23,7 @@ describe('boolean calculator', () => {
             ['NOT FALSE', true],
             ['NOT NOT FALSE', false],
             ['NOT NOT NOT FALSE', true],
+            ['TRUE AND FALSE', false],
         ])('returns %s for %s expression', (expression, expected) => {
             const output = BooleanCalculator.calculate(expression);
             expect(output).toBe(expected);
