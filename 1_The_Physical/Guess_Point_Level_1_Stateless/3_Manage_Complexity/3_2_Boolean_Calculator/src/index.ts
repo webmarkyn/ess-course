@@ -16,15 +16,16 @@ interface PriorityTree {
     root: PriorityTreeNode;
 }
 
-type Operation = 'NOT' | 'AND';
+type Operation = 'NOT' | 'AND' | 'OR';
 
 export class BooleanCalculator {
-    private static operationsByPriorityAsc: Operation[] = ['AND', 'NOT'];
+    private static operationsByPriorityAsc: Operation[] = ['OR', 'AND', 'NOT'];
 
     private static groupByOperations(expression: string[]) {
         const priorityList: Record<Operation, OperationUsage[]> = {
             'AND': [],
             'NOT': [],
+            'OR': [],
         };
         return expression.reduce((acc, word, index) => {
             if (acc[word as Operation]) {
@@ -68,6 +69,8 @@ export class BooleanCalculator {
                 return BooleanCalculator.evaluate([...left, output ? 'TRUE' : 'FALSE']);
             case 'AND':
                 return BooleanCalculator.evaluate(left) && BooleanCalculator.evaluate(right);
+            case 'OR':
+                return BooleanCalculator.evaluate(left) || BooleanCalculator.evaluate(right);
             default:
                 throw new Error('Invalid operation');
         }
