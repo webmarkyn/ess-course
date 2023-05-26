@@ -76,7 +76,25 @@ export class BooleanCalculator {
         }
     }
 
+    private static recursivelyEvaluateWithinParenthesis(expression: string): boolean {
+        const lastOpeningParenthesisIndex = expression.lastIndexOf('(');
+        const firstClosingParenthesisIndex = expression.indexOf(')');
+
+        if (lastOpeningParenthesisIndex === -1 && firstClosingParenthesisIndex === -1) {
+            return this.evaluate(expression.split(' '));
+        }
+        const expressionWithinParenthesis = expression.slice(lastOpeningParenthesisIndex + 1, firstClosingParenthesisIndex);
+        const evaluatedExpressionWithinParenthesis = 
+            this.evaluate(expressionWithinParenthesis.split(' ')) ? 'TRUE' : 'FALSE';
+
+        return this.recursivelyEvaluateWithinParenthesis(
+            expression.slice(0, lastOpeningParenthesisIndex) +
+            evaluatedExpressionWithinParenthesis +
+            expression.slice(firstClosingParenthesisIndex + 1)
+        );
+    }
+
     public static calculate(expression: string) {
-        return this.evaluate(expression.split(' '));
+        return this.recursivelyEvaluateWithinParenthesis(expression);
     }
 }
