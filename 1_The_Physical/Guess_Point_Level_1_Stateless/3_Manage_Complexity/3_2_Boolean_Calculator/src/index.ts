@@ -6,16 +6,6 @@ interface PriorityList {
     'AND': OperationUsage[];
 }
 
-interface PriorityTreeNode {
-    operation: string;
-    left: PriorityTreeNode;
-    right: PriorityTreeNode;
-}
-
-interface PriorityTree {
-    root: PriorityTreeNode;
-}
-
 type Operation = 'NOT' | 'AND' | 'OR';
 
 export class BooleanCalculator {
