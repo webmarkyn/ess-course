@@ -37,6 +37,9 @@ describe('boolean calculator', () => {
     describe('Can calculate expressions with operations and parenthesis', () => {
         it.each([
             ['FALSE OR (TRUE AND FALSE)', false],
+            ['(TRUE OR TRUE OR TRUE) AND FALSE', false],
+            ['NOT (TRUE AND TRUE)', false],
+            ['FALSE OR (TRUE AND NOT FALSE) OR TRUE', true],
         ])('returns %s for %s expression', (expression, expected) => {
             const output = BooleanCalculator.calculate(expression);
             expect(output).toBe(expected);
