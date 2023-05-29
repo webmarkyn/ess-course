@@ -9,7 +9,8 @@ describe('boolean calculator', () => {
         it.each([
             ['FALSE', false],
             ['TRUE', true],
-            ['NOT TRUE', false]
+            ['NOT TRUE', false],
+            ['NOT FALSE', true],
         ])('is able to evaluate "%s" expression', (expression, expectedOutput) => {
             const output = BooleanCalculator.calculate(expression);
             expect(output).toBe(expectedOutput);
