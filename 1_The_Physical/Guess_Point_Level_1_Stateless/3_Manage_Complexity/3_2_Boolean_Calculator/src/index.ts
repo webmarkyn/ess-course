@@ -22,9 +22,6 @@ export default class BooleanCalculator {
     }
 
     static calculate(input: string): boolean {
-        const notArguments = this.getArgumentsForOperator('NOT', input);
-        if (notArguments.right)
-            return !this.isTrue(input.slice(4));
 
         const andArguments = this.getArgumentsForOperator('AND', input);
         if (andArguments.left && andArguments.right) 
@@ -33,6 +30,10 @@ export default class BooleanCalculator {
         const orArguments = this.getArgumentsForOperator('OR', input);
         if (orArguments.left && orArguments.right) 
             return this.isTrue(orArguments.left) || this.isTrue(orArguments.right)
+
+        const notArguments = this.getArgumentsForOperator('NOT', input);
+        if (notArguments.right)
+            return !this.isTrue(input.slice(4));
 
         return this.isTrue(input);
     }

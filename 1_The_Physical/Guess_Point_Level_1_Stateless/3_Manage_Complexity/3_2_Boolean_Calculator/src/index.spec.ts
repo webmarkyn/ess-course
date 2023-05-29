@@ -29,5 +29,9 @@ describe('boolean calculator', () => {
             const output =  BooleanCalculator.calculate('TRUE OR TRUE AND FALSE');
             expect(output).toBe(false);
         })
+        it('is able to evaluate "TRUE AND NOT FALSE expression', () => {
+            const output =  BooleanCalculator.calculate('TRUE AND NOT FALSE');
+            expect(output).toBe(true);
+        })
     })
 })
