@@ -19,4 +19,11 @@ describe('boolean calculator', () => {
             expect(output).toBe(expectedOutput);
         })
     })
+
+    describe('Multiple operations', () => {
+        it('is able to evaluate "FALSE OR TRUE AND TRUE" expression', () => {
+            const output =  BooleanCalculator.calculate('FALSE OR TRUE AND TRUE');
+            expect(output).toBe(true);
+        })
+    })
 })

@@ -9,7 +9,7 @@ export default class BooleanCalculator {
         if (input.indexOf('NOT') >= 0)
             return !this.isTrue(input.slice(4));
         if (andOperatorIndex >= 0) 
-            return this.isTrue(input.slice(0, andOperatorIndex - 1)) && this.isTrue(input.slice(andOperatorIndex + 4));
+            return this.calculate(input.slice(0, andOperatorIndex - 1)) && this.calculate(input.slice(andOperatorIndex + 4));
         if (orOperatorIndex >= 0) 
             return this.isTrue(input.slice(0, orOperatorIndex - 1)) || this.isTrue(input.slice(orOperatorIndex+ 3))
         return this.isTrue(input);
