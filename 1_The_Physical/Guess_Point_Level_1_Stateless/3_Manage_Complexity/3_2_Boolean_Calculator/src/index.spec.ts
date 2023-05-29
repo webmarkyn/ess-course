@@ -21,17 +21,13 @@ describe('boolean calculator', () => {
     })
 
     describe('Multiple operations', () => {
-        it('is able to evaluate "FALSE OR TRUE AND TRUE" expression', () => {
-            const output =  BooleanCalculator.calculate('FALSE OR TRUE AND TRUE');
-            expect(output).toBe(true);
-        })
-        it('is able to evaluate "TRUE OR TRUE AND FALSE" expression', () => {
-            const output =  BooleanCalculator.calculate('TRUE OR TRUE AND FALSE');
-            expect(output).toBe(false);
-        })
-        it('is able to evaluate "TRUE AND NOT FALSE expression', () => {
-            const output =  BooleanCalculator.calculate('TRUE AND NOT FALSE');
-            expect(output).toBe(true);
+        it.each([
+            ['FALSE OR TRUE AND TRUE', true],
+            ['TRUE OR TRUE AND FALSE', false],
+            ['TRUE AND NOT FALSE', true],
+        ])('is able to evaluate "%s" expression', (expression, expectedOutput) => {
+            const output = BooleanCalculator.calculate(expression);
+            expect(output).toBe(expectedOutput);
         })
     })
 })
