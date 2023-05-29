@@ -25,7 +25,8 @@ describe('boolean calculator', () => {
             ['FALSE OR TRUE AND TRUE', true],
             ['TRUE OR TRUE AND FALSE', false],
             ['TRUE AND NOT FALSE', true],
-            ['FALSE OR FALSE OR NOT FALSE', true]
+            ['FALSE OR FALSE OR NOT FALSE', true],
+            ['FALSE AND FALSE AND TRUE', false]
         ])('is able to evaluate "%s" expression', (expression, expectedOutput) => {
             const output = BooleanCalculator.calculate(expression);
             expect(output).toBe(expectedOutput);
