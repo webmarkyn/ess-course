@@ -1,5 +1,5 @@
 export default class BooleanCalculator {
     static calculate(input: string): boolean {
-        return true;
+        return input === 'TRUE';
     }
 }
