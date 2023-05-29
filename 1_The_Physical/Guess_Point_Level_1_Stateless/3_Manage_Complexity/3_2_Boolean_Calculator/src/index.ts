@@ -29,7 +29,7 @@ export default class BooleanCalculator {
 
         const orArguments = this.getArgumentsForOperator('OR', input);
         if (orArguments.left && orArguments.right) 
-            return this.isTrue(orArguments.left) || this.isTrue(orArguments.right)
+            return this.calculate(orArguments.left) || this.calculate(orArguments.right)
 
         const notArguments = this.getArgumentsForOperator('NOT', input);
         if (notArguments.right)
