@@ -35,7 +35,9 @@ describe('boolean calculator', () => {
 
     describe('Parenthesis', () => {
         it.each([
-            ['TRUE AND (FALSE OR TRUE)', true]
+            ['TRUE AND (FALSE OR TRUE)', true],
+            ['TRUE AND (TRUE OR FALSE AND TRUE)', true],
+            ['(TRUE OR TRUE OR TRUE) AND FALSE', false]
         ])('is able to evaluate "%s" expression', (expression, expectedOutput) => {
             const output = BooleanCalculator.calculate(expression);
             expect(output).toBe(expectedOutput)
